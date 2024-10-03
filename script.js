@@ -3,7 +3,7 @@
 
 <script>
     // Initialize EmailJS with your user ID
-    emailjs.init('YOUR_USER_ID');
+    emailjs.init('service_tfks47m');
 
     async function sendEmail() {
         const recipient = document.getElementById('email-to').value;
@@ -22,7 +22,7 @@
         };
 
         try {
-            const response = await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
+            const response = await emailjs.send('service_tfks47m', 'template_bpj3yen', templateParams);
             if (response.status === 200) {
                 alert("Email sent successfully!");
             }
