@@ -1,6 +1,6 @@
 /* Basic styling for the email dashboard page */
 body {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Changed to Roboto for regular font */
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -8,7 +8,7 @@ body {
 }
 
 nav {
-    background-color: #333;
+    background-color: #0056b3;
     color: white;
     padding: 10px;
     display: flex;
@@ -18,7 +18,7 @@ nav {
 
 nav .logo {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: normal; /* No bold weight */
 }
 
 nav .menu {
