@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Dashboard</title>
+    <!-- Google Font: Bebas Neue -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">SkyNow</div>
+        <div class="menu">
+            <a href="#" onclick="showInbox()">Inbox</a>
+            <a href="#" onclick="showSent()">Sent</a>
+            <a href="#" onclick="composeEmail()">Compose</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome to your Email Dashboard</h1>
+        <p>Manage your inbox, send messages, and organize your emails in this clean and user-friendly dashboard.</p>
+
+        <!-- Inbox Section -->
+        <div class="email-section" id="inbox-section">
+            <h2>Inbox</h2>
+            <div id="inbox"></div>
+        </div>
+
+        <!-- Sent Section -->
+        <div class="email-section" id="sent-section" style="display:none;">
+            <h2>Sent Mail</h2>
+            <div id="sent"></div>
+        </div>
+
+        <!-- Compose Section -->
+        <div class="email-section" id="compose-section" style="display:none;">
+            <h2>Compose Email</h2>
+            <form id="compose-form">
+                <input type="email" placeholder="Recipient" id="email-to" required><br><br>
+                <input type="text" placeholder="Subject" id="email-subject" required><br><br>
+                <textarea id="email-body" placeholder="Write your message..." rows="6" required></textarea><br><br>
+                <button type="button" onclick="sendEmail()">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle switching between inbox, sent, and compose views
+        function showInbox() {
+            document.getElementById('inbox-section').style.display = 'block';
+            document.getElementById('sent-section').style.display = 'none';
+            document.getElementById('compose-section').style.display = 'none';
+        }
+
+        function showSent() {
+            document.getElementById('inbox-section').style.display = 'none';
+            document.getElementById('sent-section').style.display = 'block';
+            document.getElementById('compose-section').style.display = 'none';
+        }
+
+        function composeEmail() {
+            document.getElementById('inbox-section').style.display = 'none';
+            document.getElementById('sent-section').style.display = 'none';
+            document.getElementById('compose-section').style.display = 'block';
+        }
+
+        function sendEmail() {
+            const recipient = document.getElementById('email-to').value;
+            const subject = document.getElementById('email-subject').value;
+            const body = document.getElementById('email-body').value;
+
+            if (!recipient || !subject || !body) {
+                alert("All fields must be filled out!");
+                return;
+            }
+
+            // Simulate sending the email by logging the details (this would be replaced by backend logic)
+            console.log(`Sending email to: ${recipient}, Subject: ${subject}, Body: ${body}`);
+
+            // Clear the form after sending
+            document.getElementById('compose-form').reset();
+
+            alert("Email sent successfully!");
+            showInbox(); // Return to the inbox after sending
+        }
+
+        // Fetch inbox emails and simulate display (you'll need a backend API in real-world)
+        (function() {
+            const mockEmails = [
+                { subject: 'Meeting at 3 PM', sender: 'john@example.com', time: '10:30 AM' },
+                { subject: 'Invoice for your purchase', sender: 'shop@example.com', time: '9:00 AM' },
+                { subject: 'Weekend plans', sender: 'friend@example.com', time: 'Yesterday' },
+            ];
+
+            const inboxElement = document.getElementById('inbox');
+            mockEmails.forEach(email => {
+                const emailItem = document.createElement('div');
+                emailItem.classList.add('email-item');
+                emailItem.innerHTML = `<strong>${email.subject}</strong> <br> From: ${email.sender} <br> Received: ${email.time}`;
+                inboxElement.appendChild(emailItem);
+            });
+        })();
+    </script>
+</body>
+</html>
