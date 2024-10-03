@@ -20,19 +20,16 @@
         <h1>Welcome to your Email Dashboard</h1>
         <p>Manage your inbox, send messages, and organize your emails in this clean and user-friendly dashboard.</p>
 
-        <!-- Inbox Section -->
         <div class="email-section" id="inbox-section">
             <h2>Inbox</h2>
             <div id="inbox"></div>
         </div>
 
-        <!-- Sent Section -->
         <div class="email-section" id="sent-section" style="display:none;">
             <h2>Sent Mail</h2>
             <div id="sent"></div>
         </div>
 
-        <!-- Compose Section -->
         <div class="email-section" id="compose-section" style="display:none;">
             <h2>Compose Email</h2>
             <form id="compose-form">
@@ -44,40 +41,6 @@
         </div>
     </div>
 
-    <script>
-        // Function to send email through backend
-        async function sendEmail() {
-            const recipient = document.getElementById('email-to').value;
-            const subject = document.getElementById('email-subject').value;
-            const body = document.getElementById('email-body').value;
-
-            if (!recipient || !subject || !body) {
-                alert("All fields must be filled out!");
-                return;
-            }
-
-            // Send the email to the backend via POST request
-            const response = await fetch('/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    to: recipient,
-                    subject: subject,
-                    text: body
-                })
-            });
-
-            if (response.ok) {
-                alert("Email sent successfully!");
-            } else {
-                alert("Failed to send email.");
-            }
-
-            document.getElementById('compose-form').reset();  // Reset form after sending
-            showSent(); // Switch to the Sent section after sending
-        }
-    </script>
+    <script src="script.js"></script> <!-- Link to external script file -->
 </body>
 </html>
